@@ -37,8 +37,64 @@ console.log(drink)
 **/
 
 /*Switch Statement*/
+/**
+var firstName = 'Harsh'
+var job = 'teacher';
+var isMale = 0
+
+
+switch (job) {
+    case 'teacher':
+        console.log(firstName, 'is a Teacher');
+        break;
+    case 'driver':
+        console.log(firstName, 'is a Teacher');
+        break;
+    case 'programmer':
+        console.log(firstName, 'is a Teacher');
+        break;
+    default:
+        console.log(firstName, 'job is unknown');
+}
+
+if (!isMale){
+    console.log('testing \'Not True\' condition');
+}
+
+**/
+
+/**Coding Challenge 2 **/
+
+var johnAvg = (10+23+5)/3
+var mikeAvg = (6+34+23)/3
+
+
+if (johnAvg>mikeAvg) {
+    console.log('John\'s team won!');
+} else if (johnAvg<mikeAvg){
+    console.log('Mike\'s team won!');
+} else {
+    console.log('There is a draw!');
+}
+
+
+/** Functions **/
+
+function addNumbers(a, b){
+    return a+b
+}
+function mulNumbers(a, b){
+    return a*b
+}
+
+console.log(addNumbers(5, 6));
 
 
 
+var array_ = ['Harsh', 'Patel', 2000, '23']
+
+console.log(array_.length)
+console.log(array_.indexOf(2000))
 
 
+console.log(array_.indexOf('not there') === -1)
