@@ -1,21 +1,27 @@
 ///////////////////////////////////////
 // Lecture: Hoisting
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*Hoisting works for function declaration and NOT function expression
+* Works:
+*
+* callingfunc(a, b);
+*
+* function callingfunc(a, b){
+* return a+b
+* }
+*
+*
+* Doesn't work:
+*
+* callingfunc(a, b);
+*
+* var callingfunc = function (a, b){
+* return a+b
+* }
+*
+*
+*
+* */
 
 ///////////////////////////////////////
 // Lecture: Scoping
