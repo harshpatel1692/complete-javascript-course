@@ -90,7 +90,7 @@ function mulNumbers(a, b){
 console.log(addNumbers(5, 6));
 
 
-
+/**Arrays**/
 var array_ = ['Harsh', 'Patel', 2000, '23']
 
 console.log(array_.length)
@@ -98,3 +98,73 @@ console.log(array_.indexOf(2000))
 
 
 console.log(array_.indexOf('not there') === -1)
+
+
+/*Objects and Methods*/
+var john = {
+    firstName:'Harsh',
+    lastName:'Patel',
+    birthYear: 1992,
+    family: ['jack', 'jill'],
+    job: 'programmer',
+    isMarried: true,
+}
+
+console.log(john.firstName);
+console.log(john['lastName']);
+
+/*Method is function within object and the keys of the object are accessed using
+* 'this' keyword
+* */
+var objectJohn = {
+    fullName: 'John',
+    mass: 120,
+    height: 65,
+    calcBMI: function(){
+        this.BMI = this.mass/(this.height**2)
+        return this.BMI
+    }
+}
+
+
+
+johnBMI = objectJohn.mass/objectJohn.height**2
+
+console.log('John\'s BMI is', johnBMI)
+console.log('John\'s BMI using method:', objectJohn.calcBMI())
+
+/*Loops and Iterations*/
+for (var i=0; i<10; i++){
+    console.log('Loop value:', i);
+    i+=1;
+}
+
+
+var array_ = ['Harsh', 'Patel', 2000, '23']
+
+for (var i=0; i<array_.length; i++){
+    console.log('Loop value:', array_[i]);
+}
+/*
+var i = 0;
+while(i<array_.length){
+    console.log('While loop:', array_[i])
+    i++;
+}*/
+
+
+for (var i=0; i<array_.length; i++){
+    console.log('Type of', array_[i], 'is', typeof array_[i]);
+}
+console.log('------------------------------------------------------')
+for (var i=0; i<array_.length; i++){
+    if (typeof array_[i] !== 'number') continue;
+    console.log('Type of', array_[i], 'is', typeof array_[i]);
+}
+
+console.log('------------------------------------------------------')
+
+for (var i=0; i<array_.length; i++){
+    if (typeof array_[i] !== 'string') break;
+    console.log('Type of', array_[i], 'is', typeof array_[i]);
+}
