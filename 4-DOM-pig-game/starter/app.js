@@ -70,7 +70,11 @@ function togglePlayer() {
 
     roundScores = 0;
     activePlayer === 0 ? activePlayer=1 : activePlayer=0;
-    document.getElementsByClassName('.player-current-score').textContent='0';
+    // document.getElementsByClassName('player-current-score')[0].textContent='0';
+    var currentScores = document.getElementsByClassName('player-current-score')
+    for (i=0; i<currentScores.length; i++){
+        currentScores[i].textContent='0'
+    }
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
     document.querySelector('.dice').style.display='none';
