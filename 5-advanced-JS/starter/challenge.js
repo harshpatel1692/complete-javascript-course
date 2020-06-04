@@ -70,13 +70,26 @@ c) correct answer (I would use a number for this)
             console.log(i + ': ' + this.answers[i]);
         }
     }
-    Question.prototype.checkAnswer = function(ans){
+
+    Question.prototype.checkAnswer = function(ans, callback){
+        var sc;
         if (ans===this.correct){
-            console.log('Correct Answer!')
+            console.log('Correct Answer!');
+            sc=callback(true);
+
         }else{
-            console.log('Wrong Answer!')
+            console.log('Wrong Answer!');
+            sc=callback(false);
         }
+        this.displayScore(sc);
     }
+
+    Question.prototype.displayScore = function(score){
+        console.log('Your current score is:'+ score);
+        console.log('--------------------------------------------------');
+
+    }
+
     var q1 = new Question('Is Javascript easy to learn?', ['Yes', 'No'], 0);
     var q2 = new Question('What is my name?', ['John', 'Harsh', 'Meet'], 1);
     var q3 = new Question('Sky is?', ['Red', 'Green', 'Blue'], 2);
@@ -84,7 +97,16 @@ c) correct answer (I would use a number for this)
 
     var questions = [q1, q2, q3, q4];
 
-
+    function score(){
+        var sc=0;
+        return function(correct){
+            if (correct){
+                sc++;
+            }
+            return sc;
+        }
+    }
+    var keepScore = score();
     function nextQuestion(){
         var n = Math.floor(Math.random() * questions.length);
 
@@ -94,7 +116,7 @@ c) correct answer (I would use a number for this)
 
 
         if (answer !== 'exit') {
-            questions[n].checkAnswer(parseInt(answer));
+            questions[n].checkAnswer(parseInt(answer), keepScore);
             nextQuestion(); //Looped forever but can break on 'exit'!
         }
         //nextQuestion(); //Looped forever!
