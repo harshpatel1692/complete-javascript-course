@@ -77,6 +77,16 @@ var budgetController = (function(){
                 budget: data.budget
             }
         },
+        deleteItem: function(type, id){
+            var ids, index;
+            ids = data.allItems[type].map(function(current){
+                return current.id;
+            });
+            index = ids.indexOf(id);
+            if (index !== -1){
+                data.allItems[type].splice(index, 1);
+            }
+        },
         testing: function(){
             return console.log(data);
         }
@@ -202,13 +212,15 @@ var controller = (function (budgetCtrl, UICtrl){
 
     //dynamically deleting n number of components/elements
     var ctrlDeleteItem = function(event){
-        var itemId, splitId;
+        var itemId, splitId, type, id;
         itemId = event.target.parentNode.parentNode.parentNode.parentNode.id;
         if (itemId) {
             splitId = itemId.split('-');
+            type = splitId[0];
+            id = parseInt(splitId[1]);
 
             //1. Delete the item from data structure
-
+            budgetCtrl.deleteItem(type, id);
             //2. Delete the item from the UI
 
             //3. Update and show the new budget
