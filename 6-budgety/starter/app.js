@@ -160,6 +160,10 @@ var UIController = (function(){
                 document.querySelector(DOMstrings.percentageLabel).textContent = '0%';
             }
         },
+        deleteItem: function(selectorId){
+            var el =  document.getElementById(selectorId);
+            el.parentNode.removeChild(el);
+        },
         getDOMstrings: function(){
             return DOMstrings
         }
@@ -222,8 +226,9 @@ var controller = (function (budgetCtrl, UICtrl){
             //1. Delete the item from data structure
             budgetCtrl.deleteItem(type, id);
             //2. Delete the item from the UI
-
+            UICtrl.deleteItem(itemId); //need to pass the whole id and not the split parts
             //3. Update and show the new budget
+            updateBudget();
         }
     };
     return {
