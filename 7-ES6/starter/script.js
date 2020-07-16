@@ -23,3 +23,15 @@ function driversLicense6(passedTest){
 driversLicense5(true);
 driversLicense6(true);
 
+
+//Template literals
+let firstName = 'John';
+let lastName = 'Smith';
+console.log(`The name is ${firstName} ${lastName}`);
+
+const n = `${firstName} ${lastName}`;
+console.log(n.startsWith('J'));
+console.log(n.endsWith('th'));
+console.log(n.includes('oh'));
+console.log(firstName.repeat(5));
+console.log(`${firstName} `.repeat(5));
