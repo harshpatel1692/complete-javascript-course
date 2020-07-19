@@ -18,6 +18,7 @@ first();
 */
 
 //Callback Hell - ES5
+/*
 function getRecipe(){
     setTimeout(()=>{
         const recipeID = [523, 956, 346, 781, 322];
@@ -37,12 +38,10 @@ function getRecipe(){
 
 }
 getRecipe();
-
-
-
+*/
 
 //Promises
-
+/*
 const getIDs = new Promise((resolve, reject)=>{
     setTimeout(()=>{
         resolve([523, 956, 346, 781, 322]);
@@ -67,23 +66,25 @@ const getRelated = publisher => {
         }, 1500, publisher);
     });
 };
-// getIDs
-// .then(IDs => {
-//     console.log('---Promises---');
-//     console.log(IDs);
-//     return getRecipe1(IDs[3])
-// })
-// .then(([id, recipe]) => {
-//     console.log(`${id}: ${recipe.title}`);
-//     return getRelated(recipe.publisher);
-// })
-// .then(relatedRecipe=>{
-//     console.log(relatedRecipe);
-// })
-// .catch(error => {
-//     console.log(error);
-// });
+getIDs
+.then(IDs => {
+    console.log('---Promises---');
+    console.log(IDs);
+    return getRecipe1(IDs[3])
+})
+.then(([id, recipe]) => {
+    console.log(`${id}: ${recipe.title}`);
+    return getRelated(recipe.publisher);
+})
+.then(relatedRecipe=>{
+    console.log(relatedRecipe);
+})
+.catch(error => {
+    console.log(error);
+});
+*/
 
+/*
 async function getRecipe1AW(){
     const IDs = await getIDs;
     console.log(IDs);
@@ -95,3 +96,23 @@ async function getRecipe1AW(){
     return recipe;
 }
 getRecipe1AW().then(result => {console.log(`${result.title} was a returned promise.`)});
+*/
+
+//Fetch using then and catch
+function getWeather(woeid) {
+    fetch(`https://thingproxy.freeboard.io/fetch/https://www.metaweather.com/api/location/${woeid}/`)
+        .then(result => {
+            //console.log(result);
+            return result.json();
+        })
+        .then(data => {
+            //console.log(data);
+            const today = data.consolidated_weather[0];
+            console.log(`Temperatures in ${data.title} stays between ${today.min_temp} and ${today.max_temp}`);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+getWeather(2487956);
+getWeather(44418);
