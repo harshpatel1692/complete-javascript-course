@@ -91,5 +91,7 @@ async function getRecipe1AW(){
     console.log(id, recipe);
     const related = await getRelated(recipe.publisher);
     console.log(related);
+
+    return recipe;
 }
-getRecipe1AW();
+getRecipe1AW().then(result => {console.log(`${result.title} was a returned promise.`)});
