@@ -108,7 +108,7 @@ function getWeather(woeid) {
         .then(data => {
             //console.log(data);
             const today = data.consolidated_weather[0];
-            console.log(`Temperatures in ${data.title} stays between ${today.min_temp} and ${today.max_temp}`);
+            console.log(`Temperatures today in ${data.title} stays between ${today.min_temp} and ${today.max_temp}`);
         })
         .catch(error => {
             console.log(error);
@@ -116,3 +116,31 @@ function getWeather(woeid) {
 }
 getWeather(2487956);
 getWeather(44418);
+
+
+
+async function getWeatherAW(woeid){
+    try {
+        const result = await fetch(`https://thingproxy.freeboard.io/fetch/https://www.metaweather.com/api/location/${woeid}/`);
+        const data = await result.json();
+        const tomorrow = await data.consolidated_weather[1];
+        console.log(`Temperatures tomorrow in ${data.title} stays between ${tomorrow.min_temp} and ${tomorrow.max_temp}`);
+        return data
+    }
+    catch {
+        console.log('Error!');
+        alert('Error!');
+    }
+}
+getWeatherAW(2487956);
+
+//Following wont generate the expected results
+// const dataLondon = getWeatherAW(44418);
+// console.log(dataLondon)
+
+let dataLondon;
+getWeatherAW(44418)
+.then(data => {
+    dataLondon = data;
+    console.log(`JS Engine fetched the data from Async call`)
+})
