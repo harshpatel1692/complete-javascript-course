@@ -30,11 +30,56 @@ function getRecipe(){
             setTimeout(publisher => {
                 const recipe2 = {title: 'Italian Pizza', publisher:publisher};
                 console.log(`${id}: ${recipe2.title}`);
-            }, 1500, recipe.publisher);
+            }, 500, recipe.publisher);
 
-        }, 1000, recipeID[2]);
-    }, 1500);
+        }, 200, recipeID[2]);
+    }, 200);
 
 }
 getRecipe();
 
+
+
+
+//Promises
+
+const getIDs = new Promise((resolve, reject)=>{
+    setTimeout(()=>{
+        resolve([523, 956, 346, 781, 322]);
+    }, 1500);
+});
+
+const getRecipe1= recID => {
+    return new Promise((resolve, reject)=>{
+        setTimeout((id)=>{
+            const recipe = {title: 'Fresh fettuccine pasta', publisher:'John Doe'};
+            resolve([id, recipe]);
+        }, 1000, recID);
+
+    });
+};
+
+const getRelated = publisher => {
+    return new Promise((resolve, reject) => {
+        setTimeout(pub => {
+            const recipe = {title: 'Fresh zucchini pasta', publisher:'John Doe'};
+            resolve(`${pub}: ${recipe.title}`);
+        }, 1500, publisher);
+    });
+};
+getIDs
+.then(IDs => {
+    console.log('---Promises---');
+    console.log(IDs);
+    return getRecipe1(IDs[3])
+})
+.then(([id, recipe]) => {
+    console.log(`${id}: ${recipe.title}`);
+    return getRelated(recipe.publisher);
+})
+.then(relatedRecipe=>{
+    console.log(relatedRecipe);
+})
+.catch(error => {
+    console.log(error);
+});
