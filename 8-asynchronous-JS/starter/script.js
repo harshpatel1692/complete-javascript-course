@@ -67,19 +67,29 @@ const getRelated = publisher => {
         }, 1500, publisher);
     });
 };
-getIDs
-.then(IDs => {
-    console.log('---Promises---');
+// getIDs
+// .then(IDs => {
+//     console.log('---Promises---');
+//     console.log(IDs);
+//     return getRecipe1(IDs[3])
+// })
+// .then(([id, recipe]) => {
+//     console.log(`${id}: ${recipe.title}`);
+//     return getRelated(recipe.publisher);
+// })
+// .then(relatedRecipe=>{
+//     console.log(relatedRecipe);
+// })
+// .catch(error => {
+//     console.log(error);
+// });
+
+async function getRecipe1AW(){
+    const IDs = await getIDs;
     console.log(IDs);
-    return getRecipe1(IDs[3])
-})
-.then(([id, recipe]) => {
-    console.log(`${id}: ${recipe.title}`);
-    return getRelated(recipe.publisher);
-})
-.then(relatedRecipe=>{
-    console.log(relatedRecipe);
-})
-.catch(error => {
-    console.log(error);
-});
+    const [id, recipe] = await getRecipe1(IDs[4]);
+    console.log(id, recipe);
+    const related = await getRelated(recipe.publisher);
+    console.log(related);
+}
+getRecipe1AW();
