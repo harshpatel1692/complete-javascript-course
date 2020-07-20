@@ -1,3 +1,11 @@
 // Global app controller
-import num from './test';
-console.log(`Value imported: ${num} from test.js!`)
+import string from './models/Search';
+
+import { add, multiply, ID } from "./views/searchView";
+// Alternates to above statement
+// import { add as a, multiply as mul, ID } from "./views/searchView";
+// import * as searchView from "./views/searchView";
+
+
+console.log(`Model to Controller: ${string}`);
+console.log(`View to Controller: Add -> ${add(5, 6)} and Multiply -> ${multiply(5,6)}`);
